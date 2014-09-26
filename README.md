@@ -10,16 +10,37 @@ latest patches for CVE-2014-6271 and CVE-2014-7169, which (as of 2014-09-25)
 seem like they've been a bit rushed.
 
 
-Example invocation
-------------------
+Example session
+---------------
 
-    $ X='() { ignored; }; /bin/ls /' bash -c true
+    $ ls -l /bin/bash*
+    lrwxrwxrwx 1 root root      20 Sep 26 01:12 /bin/bash -> /bin/bash-shellshock
+    -rwxr-xr-x 1 root root 1029624 Sep 24 11:51 /bin/bash.real
+    -rwxr-xr-x 1 root root   10368 Sep 26 00:32 /bin/bash-shellshock
+
+    $ XX=1 XXX='(hello' /bin/bash -c env
     bash-shellshock: Refusing to start due to possibly unsafe environment variable (see syslog)
 
-    $ sudo tail /var/log/auth.log | grep bash-shellshock
-    Sep 26 01:43:08 syra bash-shellshock[4346]: (PPID=4226 UID=1000 GID=1000 \
-        EUID=1000 EGID=1000 CWD=/home/dwon) Refusing to start due to possibly \
-        unsafe environment variable: X=() { ignored; }; /bin/ls /
+    $ sudo touch /etc/bash-shellshock.strip-vars
+
+    $ XX=1 XXX='(hello' bash -c env | grep ^XX
+    XX=1
+
+    $ sudo touch /etc/bash-shellshock.log-only
+
+    $ XX=1 XXX='(hello' bash -c env | grep ^XX
+    XX=1
+    XXX=(hello
+
+    $ sudo grep 'bash-shellshock\[' /var/log/auth.log
+    Sep 26 01:51:31 debian bash-shellshock[5003]: (PPID=4708 UID=1000 GID=1000 EUID=1000 EGID=1000 CWD=/home/dwon) \
+        Refusing to start due to possibly unsafe environment variable: XXX=(hello
+    Sep 26 01:51:41 debian bash-shellshock[5018]: (PPID=4708 UID=1000 GID=1000 EUID=1000 EGID=1000 CWD=/home/dwon) \
+        Stripping possibly unsafe environment variable: XXX=(hello
+    Sep 26 01:51:50 debian bash-shellshock[5034]: (PPID=4708 UID=1000 GID=1000 EUID=1000 EGID=1000 CWD=/home/dwon) \
+        Possibly unsafe environment variable: XXX=(hello
+
+    $ rm -f /etc/bash-shellshock.log-only /etc/bash-shellshock.strip-vars
 
 
 Downloading
