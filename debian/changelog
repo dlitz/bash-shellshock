@@ -1,3 +1,9 @@
+bash-shellshock (1.0) unstable; urgency=low
+
+  * Fix strip-vars mode and add unit tests.
+
+ -- Dwayne Litzenberger <dlitz@dlitz.net>  Thu, 25 Sep 2014 23:59:47 -0700
+
 bash-shellshock (0.0) unstable; urgency=low
 
   * Initial Release.

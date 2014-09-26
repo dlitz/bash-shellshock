@@ -1,0 +1,72 @@
+#!/bin/sh
+set -e
+
+start_test() {
+    rm -rf testout
+    mkdir -p testout
+    echo "Test: $*"
+}
+
+start_test "(default config) it should succeed with an empty environment."
+env -i ./bash-shellshock.t > "testout/out" 2>&1 || [ $? -eq 255 ] || exit 1
+[ -z "$(cat testout/out)" ] || exit 1
+
+start_test "(log-only config) it should succeed with an empty environment."
+touch "testout/bash-shellshock.log-only"
+env -i ./bash-shellshock.t > "testout/out" 2>&1 || exit 1
+[ -z "$(cat testout/out)" ] || exit 1
+
+start_test "(strip-vars config) it should succeed with an empty environment."
+touch "testout/bash-shellshock.strip-vars"
+env -i ./bash-shellshock.t > "testout/out" 2>&1 || exit 1
+[ -z "$(cat testout/out)" ] || exit 1
+
+start_test "(default config) it should run and preserve the environment variables."
+env 'HELLO=WORLD' 'FOO=BAR' ./bash-shellshock.t > "testout/out" 2>&1 || exit 1
+grep -q "HELLO=WORLD" < "testout/out" || exit 1
+grep -q "FOO=BAR" < "testout/out" || exit 1
+
+start_test "(default config, with paren) it should fail with exit code 255."
+env 'X=(HELLOWORLD' ./bash-shellshock.t > "testout/out" 2>&1 || [ $? -eq 255 ] || exit 1
+[ "$(grep "X=(HELLOWORLD" < "testout/out" | wc -l )" -eq 0 ] || exit 1
+[ "$(grep "bash-shellshock: Refusing to start" < "testout/out" | wc -l )" -eq 1 ] || exit 1
+
+start_test "(log-only config, with paren) it should succeed."
+touch "testout/bash-shellshock.log-only"
+env 'X=(HELLOWORLD' ./bash-shellshock.t > "testout/out" 2>&1 || exit 1
+[ "$(grep "X=(HELLOWORLD" < "testout/out" | wc -l )" -eq 1 ] || exit 1
+
+start_test "(strip-vars config, with paren) it should succeed and strip the var."
+touch "testout/bash-shellshock.strip-vars"
+env 'X=(HELLOWORLD' ./bash-shellshock.t > "testout/out" 2>&1 || exit 1
+[ "$(grep "X=(HELLOWORLD" < "testout/out" | wc -l )" -eq 0 ] || exit 1
+
+start_test "(strip-vars config, with paren) it should properly strip vars from the environment."
+touch "testout/bash-shellshock.strip-vars"
+./testenv \
+    'VAR1=Hello world!' \
+    'VAR2=Foo bar!' \
+    'VAR3=(HELLOWORLD' \
+    'QQ' \
+    '' \
+    'VAR4=(HELLOWORLD' \
+    'VAR3=Duplicate' \
+    'VAR4=(Duplicate' \
+    'VAR2=Hello' \
+    'asdf=(' \
+    'asdf=y(' \
+    -- ./bash-shellshock.t > "testout/out" 2>&1 || exit 1
+diff -u - testout/out <<'EOF'
+VAR1=Hello world!
+VAR2=Foo bar!
+QQ
+
+VAR3=Duplicate
+VAR2=Hello
+asdf=y(
+EOF
+
+# Clean up the temp directory
+rm -rf testout
+
+echo 'All tests passed!'

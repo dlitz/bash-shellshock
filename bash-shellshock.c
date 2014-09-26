@@ -95,7 +95,9 @@ int main(int argc, char **argv) {
     char **dest;
     char *eq;
 
-    for(src = dest = environ; *src != NULL; src++) {
+    for(src = dest = environ; *src != NULL; src++, dest++) {
+        *dest = *src;   /* no-op except when MODE_STRIP_VARS is in use */
+
         eq = strchr(*src, '=');
         if (eq != NULL && eq[1] == '(') {
             if (config_mode == MODE_UNINITIALIZED) {
@@ -106,19 +108,15 @@ int main(int argc, char **argv) {
                 syslog(LOG_WARNING, "(%s) Possibly unsafe environment variable: %s", info, *src);
             } else if (config_mode == MODE_STRIP_VARS) {
                 syslog(LOG_WARNING, "(%s) Stripping possibly unsafe environment variable: %s", info, *src);
-                *dest = NULL;
+                dest--;
             } else {
                 syslog(LOG_CRIT, "(%s) Refusing to start due to possibly unsafe environment variable: %s", info, *src);
                 fprintf(stderr, "bash-shellshock: Refusing to start due to possibly unsafe environment variable (see syslog)\n");
                 exit(255);
             }
-        } else {
-            if (config_mode == MODE_STRIP_VARS) {
-                *dest = *src;
-                dest++;
-            }
         }
     }
+    *dest = NULL;
 
     execve(REAL_BASH, argv, environ);
     syslog(LOG_ERR, "(%s) Failed to start " REAL_BASH ": errno=%d", info, errno);

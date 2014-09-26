@@ -1,5 +1,8 @@
-/bash-shellshock
 /debian/bash-shellshock
 /debian/bash-shellshock.debhelper.log
 /debian/bash-shellshock.substvars
 /debian/files
+/bash-shellshock
+/bash-shellshock.t
+/testenv
+/testout
