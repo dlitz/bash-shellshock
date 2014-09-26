@@ -1,9 +1,9 @@
 bash-shellshock wrapper
 =======================
 
-This is a small wrapper around /bin/bash that refuses to start bash (or
-optionally strips bad environment variables and continues) if any environment
-variables start with '('.
+This is a small wrapper around /bin/bash that refuses to start bash if any
+environment variables start with '('.  It can also be run in a log-only mode
+and a mode that strips these 'bad' environment variables.
 
 You can install this as a temporary workaround if you don't fully trust the
 latest patches for CVE-2014-6271 and CVE-2014-7169, which (as of 2014-09-25)
@@ -13,9 +13,13 @@ seem like they've been a bit rushed.
 Downloading
 -----------
 
-**Binaries available:** https://github.com/dlitz/bash-shellshock/tree/binaries/binaries
+- Binary .deb packages for Debian and Ubuntu:
 
-Source code: https://github.com/dlitz/bash-shellshock
+    https://github.com/dlitz/bash-shellshock/tree/binaries/binaries
+
+- Source code:
+
+    https://github.com/dlitz/bash-shellshock
 
 
 Installation
@@ -61,7 +65,6 @@ Testing
         env X='() { (a)=>\' bash -c "echo date"; cat echo
 
 
-
 Logging
 -------
 
@@ -71,7 +74,14 @@ Logs go to the `LOG_AUTHPRIV` syslog facility, which is typically found at `/var
 Caveat
 ------
 
-I don't really know what this breaks.
+This might break bash scripts that rely on receiving functions and/or arrays
+via the environment.  You probably shouldn't do that anyway.
+
+
+Better solution
+---------------
+
+Remove this silly feature from bash in the first place.
 
 
 License
