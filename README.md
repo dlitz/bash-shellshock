@@ -13,14 +13,9 @@ seem like they've been a bit rushed.
 Downloading
 -----------
 
-Source code:
+Source code: https://github.com/dlitz/bash-shellshock
 
-    git clone https://github.com/dlitz/bash-shellshock bash-shellshock-0.0
-
-
-Binaries:
-
-- Debian wheezy (amd64) [bash-shellshock\_0.0\_amd64.deb](https://github.com/dlitz/bash-shellshock/blob/binaries/binaries/wheezy-amd64/bash-shellshock_0.0_amd64.deb)
+Binaries: https://github.com/dlitz/bash-shellshock/tree/binaries/binaries
 
 
 Installation
