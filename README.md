@@ -55,20 +55,26 @@ Downloading
     https://github.com/dlitz/bash-shellshock
 
 
-Installation
-------------
+Building from source
+--------------------
 
-To build and install this package under Debian or Ubuntu, run:
+* To build and install this package from source under Debian or Ubuntu, clone
+  the repository and run:
 
-    dpkg-buildpackage -us -uc -tc
-    sudo dpkg -i ../bash-shellshock_0.0_amd64.deb
+        dpkg-buildpackage -us -uc -tc
+        sudo dpkg -i ../bash-shellshock_1.0_amd64.deb
 
-For manual installation, run this:
+  See also the [docs/sbuild.md](docs/sbuild.md) file for information about
+  building using sbuild.
 
-    make
-    make install
-    ln /bin/bash /bin/bash.real
-    ln -sf /bin/bash-shellshock /bin/bash
+* To compile manually, run this:
+
+        make
+        make install
+        ln /bin/bash /bin/bash.real
+        ln -sf /bin/bash-shellshock /bin/bash
+
+  You may need to adjust the paths in the Makefile.
 
 
 Configuration
