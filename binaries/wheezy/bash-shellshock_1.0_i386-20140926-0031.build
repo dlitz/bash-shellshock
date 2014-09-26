@@ -1,0 +1,458 @@
+sbuild (Debian sbuild) 0.63.2 (18 Aug 2012) on saros.dlitz.net
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║ bash-shellshock 1.0 (i386)                                 26 Sep 2014 00:31 ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+Package: bash-shellshock
+Version: 1.0
+Source Version: 1.0
+Distribution: wheezy
+Machine Architecture: amd64
+Host Architecture: i386
+Build Architecture: i386
+
+I: NOTICE: Log filtering will replace 'build/bash-shellshock-D9UpRe/bash-shellshock-1.0' with '«PKGBUILDDIR»'
+I: NOTICE: Log filtering will replace 'build/bash-shellshock-D9UpRe' with '«BUILDDIR»'
+I: NOTICE: Log filtering will replace 'var/lib/schroot/mount/wheezy-i386-sbuild-97144245-0541-4f86-9394-9fbdff64be0e' with '«CHROOT»'
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ Update chroot                                                                │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+Hit http://mirror.dlitz.net wheezy Release.gpg
+Hit http://mirror.dlitz.net wheezy Release
+Hit http://mirror.dlitz.net wheezy/main Sources
+Hit http://mirror.dlitz.net wheezy/main amd64 Packages
+Hit http://mirror.dlitz.net wheezy/main i386 Packages
+Hit http://mirror.dlitz.net wheezy/main Translation-en
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ Fetch source files                                                           │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+
+Local sources
+─────────────
+
+bash-shellshock_1.0.dsc exists in .; copying to chroot
+
+Check arch
+──────────
+
+Merged Build-Depends: build-essential, fakeroot
+Filtered Build-Depends: build-essential, fakeroot
+dpkg-deb: building package `sbuild-build-depends-core-dummy' in `/«BUILDDIR»/resolver-unIpiv/apt_archive/sbuild-build-depends-core-dummy.deb'.
+OK
+Reading package lists...
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ Install core build dependencies (apt-based resolver)                         │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+Installing build dependencies
+Reading package lists...
+Building dependency tree...
+The following NEW packages will be installed:
+  sbuild-build-depends-core-dummy
+debconf: delaying package configuration, since apt-utils is not installed
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+Need to get 0 B/714 B of archives.
+After this operation, 0 B of additional disk space will be used.
+Selecting previously unselected package sbuild-build-depends-core-dummy.
+(Reading database ... 10967 files and directories currently installed.)
+Unpacking sbuild-build-depends-core-dummy (from .../sbuild-build-depends-core-dummy.deb) ...
+Setting up sbuild-build-depends-core-dummy (0.invalid.0) ...
+Merged Build-Depends: base-files, base-passwd, bash, coreutils, dash, debianutils, diffutils, dpkg, e2fsprogs, findutils, grep, gzip, hostname, ncurses-base, ncurses-bin, perl-base, sed, login, sysvinit-utils, sysvinit, tar, bsdutils, mount, util-linux, libc6-dev | libc-dev, gcc (>= 4:4.4.3), g++ (>= 4:4.4.3), make, dpkg-dev (>= 1.13.5), debhelper (>= 9)
+Filtered Build-Depends: base-files, base-passwd, bash, coreutils, dash, debianutils, diffutils, dpkg, e2fsprogs, findutils, grep, gzip, hostname, ncurses-base, ncurses-bin, perl-base, sed, login, sysvinit-utils, sysvinit, tar, bsdutils, mount, util-linux, libc6-dev, gcc (>= 4:4.4.3), g++ (>= 4:4.4.3), make, dpkg-dev (>= 1.13.5), debhelper (>= 9)
+dpkg-deb: building package `sbuild-build-depends-bash-shellshock-dummy' in `/«BUILDDIR»/resolver-RWHe4y/apt_archive/sbuild-build-depends-bash-shellshock-dummy.deb'.
+OK
+Reading package lists...
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ Install bash-shellshock build dependencies (apt-based resolver)              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+Installing build dependencies
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following extra packages will be installed:
+  bsdmainutils debhelper file gettext gettext-base groff-base html2text
+  intltool-debian libasprintf0c2 libcroco3 libffi5 libgettextpo0 libglib2.0-0
+  libmagic1 libpcre3 libpipeline1 libunistring0 libxml2 man-db po-debconf
+Suggested packages:
+  wamerican wordlist whois vacation dh-make gettext-doc groff less www-browser
+  libmail-box-perl
+Recommended packages:
+  curl wget lynx-cur autopoint libglib2.0-data shared-mime-info xml-core
+  libmail-sendmail-perl
+The following NEW packages will be installed:
+  bsdmainutils debhelper file gettext gettext-base groff-base html2text
+  intltool-debian libasprintf0c2 libcroco3 libffi5 libgettextpo0 libglib2.0-0
+  libmagic1 libpcre3 libpipeline1 libunistring0 libxml2 man-db po-debconf
+  sbuild-build-depends-bash-shellshock-dummy
+0 upgraded, 21 newly installed, 0 to remove and 0 not upgraded.
+Need to get 9520 kB/9521 kB of archives.
+After this operation, 25.6 MB of additional disk space will be used.
+Get:1 http://mirror.dlitz.net/debian/ wheezy/main libpipeline1 i386 1.2.1-1 [38.6 kB]
+Get:2 http://mirror.dlitz.net/debian/ wheezy/main libasprintf0c2 i386 0.18.1.1-9 [26.7 kB]
+Get:3 http://mirror.dlitz.net/debian/ wheezy/main libmagic1 i386 5.11-2+deb7u3 [204 kB]
+Get:4 http://mirror.dlitz.net/debian/ wheezy/main libpcre3 i386 1:8.30-5 [240 kB]
+Get:5 http://mirror.dlitz.net/debian/ wheezy/main libxml2 i386 2.8.0+dfsg1-7+nmu3 [893 kB]
+Get:6 http://mirror.dlitz.net/debian/ wheezy/main libffi5 i386 3.0.10-3 [21.0 kB]
+Get:7 http://mirror.dlitz.net/debian/ wheezy/main libglib2.0-0 i386 2.33.12+really2.32.4-5 [1829 kB]
+Get:8 http://mirror.dlitz.net/debian/ wheezy/main libcroco3 i386 0.6.6-2 [133 kB]
+Get:9 http://mirror.dlitz.net/debian/ wheezy/main libunistring0 i386 0.9.3-5 [442 kB]
+Get:10 http://mirror.dlitz.net/debian/ wheezy/main libgettextpo0 i386 0.18.1.1-9 [140 kB]
+Get:11 http://mirror.dlitz.net/debian/ wheezy/main bsdmainutils i386 9.0.3 [205 kB]
+Get:12 http://mirror.dlitz.net/debian/ wheezy/main groff-base i386 1.21-9 [1131 kB]
+Get:13 http://mirror.dlitz.net/debian/ wheezy/main man-db i386 2.6.2-1 [1055 kB]
+Get:14 http://mirror.dlitz.net/debian/ wheezy/main file i386 5.11-2+deb7u3 [51.8 kB]
+Get:15 http://mirror.dlitz.net/debian/ wheezy/main gettext-base i386 0.18.1.1-9 [131 kB]
+Get:16 http://mirror.dlitz.net/debian/ wheezy/main html2text i386 1.3.2a-15 [101 kB]
+Get:17 http://mirror.dlitz.net/debian/ wheezy/main gettext i386 0.18.1.1-9 [1916 kB]
+Get:18 http://mirror.dlitz.net/debian/ wheezy/main intltool-debian all 0.35.0+20060710.1 [30.8 kB]
+Get:19 http://mirror.dlitz.net/debian/ wheezy/main po-debconf all 1.0.16+nmu2 [224 kB]
+Get:20 http://mirror.dlitz.net/debian/ wheezy/main debhelper all 9.20120909 [705 kB]
+debconf: delaying package configuration, since apt-utils is not installed
+Fetched 9520 kB in 0s (12.9 MB/s)
+Selecting previously unselected package libpipeline1:i386.
+(Reading database ... 10967 files and directories currently installed.)
+Unpacking libpipeline1:i386 (from .../libpipeline1_1.2.1-1_i386.deb) ...
+Selecting previously unselected package libasprintf0c2:i386.
+Unpacking libasprintf0c2:i386 (from .../libasprintf0c2_0.18.1.1-9_i386.deb) ...
+Selecting previously unselected package libmagic1:i386.
+Unpacking libmagic1:i386 (from .../libmagic1_5.11-2+deb7u3_i386.deb) ...
+Selecting previously unselected package libpcre3:i386.
+Unpacking libpcre3:i386 (from .../libpcre3_1%3a8.30-5_i386.deb) ...
+Selecting previously unselected package libxml2:i386.
+Unpacking libxml2:i386 (from .../libxml2_2.8.0+dfsg1-7+nmu3_i386.deb) ...
+Selecting previously unselected package libffi5:i386.
+Unpacking libffi5:i386 (from .../libffi5_3.0.10-3_i386.deb) ...
+Selecting previously unselected package libglib2.0-0:i386.
+Unpacking libglib2.0-0:i386 (from .../libglib2.0-0_2.33.12+really2.32.4-5_i386.deb) ...
+Selecting previously unselected package libcroco3:i386.
+Unpacking libcroco3:i386 (from .../libcroco3_0.6.6-2_i386.deb) ...
+Selecting previously unselected package libunistring0:i386.
+Unpacking libunistring0:i386 (from .../libunistring0_0.9.3-5_i386.deb) ...
+Selecting previously unselected package libgettextpo0:i386.
+Unpacking libgettextpo0:i386 (from .../libgettextpo0_0.18.1.1-9_i386.deb) ...
+Selecting previously unselected package bsdmainutils.
+Unpacking bsdmainutils (from .../bsdmainutils_9.0.3_i386.deb) ...
+Selecting previously unselected package groff-base.
+Unpacking groff-base (from .../groff-base_1.21-9_i386.deb) ...
+Selecting previously unselected package man-db.
+Unpacking man-db (from .../man-db_2.6.2-1_i386.deb) ...
+Selecting previously unselected package file.
+Unpacking file (from .../file_5.11-2+deb7u3_i386.deb) ...
+Selecting previously unselected package gettext-base.
+Unpacking gettext-base (from .../gettext-base_0.18.1.1-9_i386.deb) ...
+Selecting previously unselected package html2text.
+Unpacking html2text (from .../html2text_1.3.2a-15_i386.deb) ...
+Selecting previously unselected package gettext.
+Unpacking gettext (from .../gettext_0.18.1.1-9_i386.deb) ...
+Selecting previously unselected package intltool-debian.
+Unpacking intltool-debian (from .../intltool-debian_0.35.0+20060710.1_all.deb) ...
+Selecting previously unselected package po-debconf.
+Unpacking po-debconf (from .../po-debconf_1.0.16+nmu2_all.deb) ...
+Selecting previously unselected package debhelper.
+Unpacking debhelper (from .../debhelper_9.20120909_all.deb) ...
+Selecting previously unselected package sbuild-build-depends-bash-shellshock-dummy.
+Unpacking sbuild-build-depends-bash-shellshock-dummy (from .../sbuild-build-depends-bash-shellshock-dummy.deb) ...
+Setting up libpipeline1:i386 (1.2.1-1) ...
+Setting up libasprintf0c2:i386 (0.18.1.1-9) ...
+Setting up libmagic1:i386 (5.11-2+deb7u3) ...
+Setting up libpcre3:i386 (1:8.30-5) ...
+Setting up libxml2:i386 (2.8.0+dfsg1-7+nmu3) ...
+Setting up libffi5:i386 (3.0.10-3) ...
+Setting up libglib2.0-0:i386 (2.33.12+really2.32.4-5) ...
+No schema files found: doing nothing.
+Setting up libcroco3:i386 (0.6.6-2) ...
+Setting up libunistring0:i386 (0.9.3-5) ...
+Setting up libgettextpo0:i386 (0.18.1.1-9) ...
+Setting up bsdmainutils (9.0.3) ...
+update-alternatives: using /usr/bin/bsd-write to provide /usr/bin/write (write) in auto mode
+update-alternatives: using /usr/bin/bsd-from to provide /usr/bin/from (from) in auto mode
+Setting up groff-base (1.21-9) ...
+Setting up man-db (2.6.2-1) ...
+Building database of manual pages ...
+Setting up file (5.11-2+deb7u3) ...
+Setting up gettext-base (0.18.1.1-9) ...
+Setting up html2text (1.3.2a-15) ...
+Setting up gettext (0.18.1.1-9) ...
+Setting up intltool-debian (0.35.0+20060710.1) ...
+Setting up po-debconf (1.0.16+nmu2) ...
+Setting up debhelper (9.20120909) ...
+Setting up sbuild-build-depends-bash-shellshock-dummy (0.invalid.0) ...
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ Build environment                                                            │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+Kernel: Linux 3.14-0.bpo.2-amd64 amd64 (x86_64)
+Toolchain package versions: binutils_2.22-8 dpkg-dev_1.16.15 g++-4.7_4.7.2-5 gcc-4.7_4.7.2-5 libc6-dev_2.13-38+deb7u2 libstdc++6_4.7.2-5 libstdc++6-4.7-dev_4.7.2-5 linux-libc-dev_3.2.57-3
+Package versions: apt_0.9.7.9+deb7u2 base-files_7.1wheezy6 base-passwd_3.5.26 bash_4.2+dfsg-0.1 binutils_2.22-8 bsdmainutils_9.0.3 bsdutils_1:2.20.1-5.3 build-essential_11.5 bzip2_1.0.6-4 coreutils_8.13-3.5 cpp_4:4.7.2-1 cpp-4.7_4.7.2-5 dash_0.5.7-3 debconf_1.5.49 debconf-i18n_1.5.49 debfoster_2.7-1.2 debhelper_9.20120909 debian-archive-keyring_2012.4 debianutils_4.3.2 diffutils_1:3.2-6 dpkg_1.16.15 dpkg-dev_1.16.15 e2fslibs_1.42.5-1.1 e2fsprogs_1.42.5-1.1 fakeroot_1.18.4-2 file_5.11-2+deb7u3 findutils_4.4.2-4 g++_4:4.7.2-1 g++-4.7_4.7.2-5 gcc_4:4.7.2-1 gcc-4.7_4.7.2-5 gcc-4.7-base_4.7.2-5 gettext_0.18.1.1-9 gettext-base_0.18.1.1-9 gnupg_1.4.12-7+deb7u4 gpgv_1.4.12-7+deb7u4 grep_2.12-2 groff-base_1.21-9 gzip_1.5-1.1 hostname_3.11 html2text_1.3.2a-15 initscripts_2.88dsf-41+deb7u1 insserv_1.14.0-5 intltool-debian_0.35.0+20060710.1 libacl1_2.2.51-8 libapt-pkg4.12_0.9.7.9+deb7u2 libasprintf0c2_0.18.1.1-9 libattr1_1:2.4.46-8 libblkid1_2.20.1-5.3 libbz2-1.0_1.0.6-4 libc-bin_2.13-38+deb7u2 libc-dev-bin_2.13-38+deb7u2 libc6_2.13-38+deb7u2 libc6-dev_2.13-38+deb7u2 libclass-isa-perl_0.36-3 libcomerr2_1.42.5-1.1 libcroco3_0.6.6-2 libdb5.1_5.1.29-5 libdpkg-perl_1.16.15 libffi5_3.0.10-3 libgc1c2_1:7.1-9.1 libgcc1_1:4.7.2-5 libgdbm3_1.8.3-11 libgettextpo0_0.18.1.1-9 libglib2.0-0_2.33.12+really2.32.4-5 libgmp10_2:5.0.5+dfsg-2 libgomp1_4.7.2-5 libitm1_4.7.2-5 liblocale-gettext-perl_1.05-7+b1 liblzma5_5.1.1alpha+20120614-2 libmagic1_5.11-2+deb7u3 libmount1_2.20.1-5.3 libmpc2_0.9-4 libmpfr4_3.1.0-5 libncurses5_5.9-10 libpam-modules_1.1.3-7.1 libpam-modules-bin_1.1.3-7.1 libpam-runtime_1.1.3-7.1 libpam0g_1.1.3-7.1 libpcre3_1:8.30-5 libpipeline1_1.2.1-1 libquadmath0_4.7.2-5 libreadline6_6.2+dfsg-0.1 libselinux1_2.1.9-5 libsemanage-common_2.1.6-6 libsemanage1_2.1.6-6 libsepol1_2.1.4-3 libslang2_2.2.4-15 libss2_1.42.5-1.1 libstdc++6_4.7.2-5 libstdc++6-4.7-dev_4.7.2-5 libswitch-perl_2.16-2 libtext-charwidth-perl_0.04-7+b1 libtext-iconv-perl_1.7-5 libtext-wrapi18n-perl_0.06-7 libtimedate-perl_1.2000-1 libtinfo5_5.9-10 libunistring0_0.9.3-5 libusb-0.1-4_2:0.1.12-20+nmu1 libustr-1.0-1_1.0.4-3 libuuid1_2.20.1-5.3 libxml2_2.8.0+dfsg1-7+nmu3 linux-libc-dev_3.2.57-3 login_1:4.1.5.1-1 lsb-base_4.1+Debian8+deb7u1 make_3.81-8.2 man-db_2.6.2-1 mawk_1.3.3-17 mount_2.20.1-5.3 multiarch-support_2.13-38+deb7u2 ncurses-base_5.9-10 ncurses-bin_5.9-10 passwd_1:4.1.5.1-1 patch_2.6.1-3 perl_5.14.2-21+deb7u1 perl-base_5.14.2-21+deb7u1 perl-modules_5.14.2-21+deb7u1 po-debconf_1.0.16+nmu2 readline-common_6.2+dfsg-0.1 sbuild-build-depends-bash-shellshock-dummy_0.invalid.0 sbuild-build-depends-core-dummy_0.invalid.0 sed_4.2.1-10 sensible-utils_0.0.7 sysv-rc_2.88dsf-41+deb7u1 sysvinit_2.88dsf-41+deb7u1 sysvinit-utils_2.88dsf-41+deb7u1 tar_1.26+dfsg-0.1 tzdata_2014e-0wheezy1 util-linux_2.20.1-5.3 xz-utils_5.1.1alpha+20120614-2 zlib1g_1:1.2.7.dfsg-13
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ Build                                                                        │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+
+Unpack source
+─────────────
+
+dpkg-source: warning: extracting unsigned source package (bash-shellshock_1.0.dsc)
+dpkg-source: info: extracting bash-shellshock in bash-shellshock-1.0
+dpkg-source: info: unpacking bash-shellshock_1.0.tar.gz
+
+Check disc space
+────────────────
+
+Sufficient free space for build
+
+User Environment
+────────────────
+
+HOME=/sbuild-nonexistent
+LOGNAME=dwon
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+SCHROOT_ALIAS_NAME=wheezy-i386-sbuild
+SCHROOT_CHROOT_NAME=wheezy-i386-sbuild
+SCHROOT_COMMAND=env
+SCHROOT_GID=1000
+SCHROOT_GROUP=dwon
+SCHROOT_SESSION_ID=wheezy-i386-sbuild-97144245-0541-4f86-9394-9fbdff64be0e
+SCHROOT_UID=1000
+SCHROOT_USER=dwon
+SHELL=/bin/sh
+TERM=xterm
+USER=dwon
+XDG_RUNTIME_DIR=/run/user/1000
+XDG_SESSION_ID=432
+
+dpkg-buildpackage
+─────────────────
+
+dpkg-buildpackage: source package bash-shellshock
+dpkg-buildpackage: source version 1.0
+dpkg-buildpackage: source changed by Dwayne Litzenberger <dlitz@dlitz.net>
+ dpkg-source --before-build bash-shellshock-1.0
+dpkg-buildpackage: host architecture i386
+ fakeroot debian/rules clean
+dh clean 
+   dh_testdir
+   dh_auto_clean
+make[1]: Entering directory `/«PKGBUILDDIR»'
+rm -f bash-shellshock bash-shellshock.t testenv
+make[1]: Leaving directory `/«PKGBUILDDIR»'
+   dh_clean
+ debian/rules build-arch
+dh build-arch 
+   dh_testdir -a
+   dh_auto_configure -a
+   dh_auto_build -a
+make[1]: Entering directory `/«PKGBUILDDIR»'
+cc -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -o bash-shellshock bash-shellshock.c -Wl,-z,relro
+cc -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -o bash-shellshock.t bash-shellshock.c -Wl,-z,relro -DREAL_BASH=\"/usr/bin/env\" -DCONFIG_FILE_LOG_ONLY=\"testout/bash-shellshock.log-only\" -DCONFIG_FILE_STRIP_VARS=\"testout/bash-shellshock.strip-vars\"
+cc -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -o testenv testenv.c -Wl,-z,relro
+./runtests
+Test: (default config) it should succeed with an empty environment.
+Test: (log-only config) it should succeed with an empty environment.
+Test: (strip-vars config) it should succeed with an empty environment.
+Test: (default config) it should run and preserve the environment variables.
+Test: (default config, with paren) it should fail with exit code 255.
+Test: (log-only config, with paren) it should succeed.
+Test: (strip-vars config, with paren) it should succeed and strip the var.
+Test: (strip-vars config, with paren) it should properly strip vars from the environment.
+All tests passed!
+make[1]: Leaving directory `/«PKGBUILDDIR»'
+   dh_auto_test -a
+make[1]: Entering directory `/«PKGBUILDDIR»'
+./runtests
+Test: (default config) it should succeed with an empty environment.
+Test: (log-only config) it should succeed with an empty environment.
+Test: (strip-vars config) it should succeed with an empty environment.
+Test: (default config) it should run and preserve the environment variables.
+Test: (default config, with paren) it should fail with exit code 255.
+Test: (log-only config, with paren) it should succeed.
+Test: (strip-vars config, with paren) it should succeed and strip the var.
+Test: (strip-vars config, with paren) it should properly strip vars from the environment.
+All tests passed!
+make[1]: Leaving directory `/«PKGBUILDDIR»'
+ fakeroot debian/rules binary-arch
+dh binary-arch 
+   dh_testroot -a
+   dh_prep -a
+   dh_installdirs -a
+   dh_auto_install -a
+make[1]: Entering directory `/«PKGBUILDDIR»'
+install -m 0755 -d /«PKGBUILDDIR»/debian/bash-shellshock/bin
+install -m 0755 bash-shellshock /«PKGBUILDDIR»/debian/bash-shellshock/bin/bash-shellshock
+make[1]: Leaving directory `/«PKGBUILDDIR»'
+   dh_install -a
+   dh_installdocs -a
+   dh_installchangelogs -a
+   dh_installexamples -a
+   dh_installman -a
+   dh_installcatalogs -a
+   dh_installcron -a
+   dh_installdebconf -a
+   dh_installemacsen -a
+   dh_installifupdown -a
+   dh_installinfo -a
+   dh_installinit -a
+   dh_installmenu -a
+   dh_installmime -a
+   dh_installmodules -a
+   dh_installlogcheck -a
+   dh_installlogrotate -a
+   dh_installpam -a
+   dh_installppp -a
+   dh_installudev -a
+   dh_installwm -a
+   dh_installxfonts -a
+   dh_installgsettings -a
+   dh_bugfiles -a
+   dh_ucf -a
+   dh_lintian -a
+   dh_gconf -a
+   dh_icons -a
+   dh_perl -a
+   dh_usrlocal -a
+   dh_link -a
+   dh_compress -a
+   dh_fixperms -a
+   dh_strip -a
+   dh_makeshlibs -a
+   dh_shlibdeps -a
+   dh_installdeb -a
+   dh_gencontrol -a
+dpkg-gencontrol: warning: File::FcntlLock not available; using flock which is not NFS-safe
+   dh_md5sums -a
+   dh_builddeb -a
+dpkg-deb: building package `bash-shellshock' in `../bash-shellshock_1.0_i386.deb'.
+ dpkg-genchanges -B >../bash-shellshock_1.0_i386.changes
+dpkg-genchanges: arch-specific upload - not including arch-independent packages
+dpkg-genchanges: binary-only upload - not including any source code
+ dpkg-source --after-build bash-shellshock-1.0
+dpkg-buildpackage: binary only upload (no source included)
+────────────────────────────────────────────────────────────────────────────────
+Build finished at 20140926-0032
+
+Finished
+────────
+
+I: Built successfully
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ Changes                                                                      │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+
+bash-shellshock_1.0_i386.changes:
+─────────────────────────────────
+
+Format: 1.8
+Date: Thu, 25 Sep 2014 23:59:47 -0700
+Source: bash-shellshock
+Binary: bash-shellshock
+Architecture: i386
+Version: 1.0
+Distribution: wheezy
+Urgency: low
+Maintainer: Dwayne Litzenberger <dlitz@dlitz.net>
+Changed-By: Dwayne Litzenberger <dlitz@dlitz.net>
+Description: 
+ bash-shellshock - Wrapper around bash to strip function definitions.
+Changes: 
+ bash-shellshock (1.0) unstable; urgency=low
+ .
+   * Fix strip-vars mode and add unit tests.
+Checksums-Sha1: 
+ 42cc56d65066d8ee25c8429b1b1e6151aeb6fee3 6974 bash-shellshock_1.0_i386.deb
+Checksums-Sha256: 
+ d63cb7b5493b6eda246af8165384e07647d2e5ed30b6cf847cc24f48a18e3ba7 6974 bash-shellshock_1.0_i386.deb
+Files: 
+ 75ddac30e59e79f72811a8a3ed561962 6974 shells optional bash-shellshock_1.0_i386.deb
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ Package contents                                                             │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+
+bash-shellshock_1.0_i386.deb
+────────────────────────────
+
+ new debian package, version 2.0.
+ size 6974 bytes: control archive=1514 bytes.
+     441 bytes,    12 lines      control              
+     431 bytes,     6 lines      md5sums              
+    1601 bytes,    56 lines   *  postinst             #!/bin/sh
+    1508 bytes,    56 lines   *  prerm                #!/bin/sh
+ Package: bash-shellshock
+ Version: 1.0
+ Architecture: i386
+ Maintainer: Dwayne Litzenberger <dlitz@dlitz.net>
+ Installed-Size: 50
+ Depends: libc6 (>= 2.0)
+ Section: shells
+ Priority: optional
+ Homepage: https://github.com/dlitz/bash-shellshock
+ Description: Wrapper around bash to strip function definitions.
+  This package diverts /bin/bash to /bin/bash.real and installs a wrapper that
+  strips environment variables with values that start with '('.
+
+drwxr-xr-x root/root         0 2014-09-26 00:32 ./
+drwxr-xr-x root/root         0 2014-09-26 00:32 ./bin/
+-rwxr-xr-x root/root      5532 2014-09-26 00:32 ./bin/bash-shellshock
+drwxr-xr-x root/root         0 2014-09-26 00:32 ./usr/
+drwxr-xr-x root/root         0 2014-09-26 00:32 ./usr/share/
+drwxr-xr-x root/root         0 2014-09-26 00:32 ./usr/share/lintian/
+drwxr-xr-x root/root         0 2014-09-26 00:32 ./usr/share/lintian/overrides/
+-rw-r--r-- root/root       180 2014-09-26 00:04 ./usr/share/lintian/overrides/bash-shellshock
+drwxr-xr-x root/root         0 2014-09-26 00:32 ./usr/share/doc/
+drwxr-xr-x root/root         0 2014-09-26 00:32 ./usr/share/doc/bash-shellshock/
+-rw-r--r-- root/root       196 2014-09-26 00:04 ./usr/share/doc/bash-shellshock/changelog.gz
+-rw-r--r-- root/root      3177 2014-09-26 00:29 ./usr/share/doc/bash-shellshock/README.md
+-rw-r--r-- root/root       982 2014-09-26 00:04 ./usr/share/doc/bash-shellshock/sbuild.md
+-rw-r--r-- root/root      1053 2014-09-26 00:04 ./usr/share/doc/bash-shellshock/copyright
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ Post Build                                                                   │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ Cleanup                                                                      │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+Purging /«BUILDDIR»
+Not cleaning session: cloned chroot in use
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ Summary                                                                      │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+Build Architecture: i386
+Build-Space: 224
+Build-Time: 10
+Distribution: wheezy
+Host Architecture: i386
+Install-Time: 55
+Job: bash-shellshock_1.0.dsc
+Machine Architecture: amd64
+Package: bash-shellshock
+Package-Time: 92
+Source-Version: 1.0
+Space: 224
+Status: successful
+Version: 1.0
+────────────────────────────────────────────────────────────────────────────────
+Finished at 20140926-0032
+Build needed 00:01:32, 224k disc space

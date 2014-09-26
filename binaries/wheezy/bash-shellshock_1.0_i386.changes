@@ -1,0 +1,22 @@
+Format: 1.8
+Date: Thu, 25 Sep 2014 23:59:47 -0700
+Source: bash-shellshock
+Binary: bash-shellshock
+Architecture: i386
+Version: 1.0
+Distribution: wheezy
+Urgency: low
+Maintainer: Dwayne Litzenberger <dlitz@dlitz.net>
+Changed-By: Dwayne Litzenberger <dlitz@dlitz.net>
+Description: 
+ bash-shellshock - Wrapper around bash to strip function definitions.
+Changes: 
+ bash-shellshock (1.0) unstable; urgency=low
+ .
+   * Fix strip-vars mode and add unit tests.
+Checksums-Sha1: 
+ 42cc56d65066d8ee25c8429b1b1e6151aeb6fee3 6974 bash-shellshock_1.0_i386.deb
+Checksums-Sha256: 
+ d63cb7b5493b6eda246af8165384e07647d2e5ed30b6cf847cc24f48a18e3ba7 6974 bash-shellshock_1.0_i386.deb
+Files: 
+ 75ddac30e59e79f72811a8a3ed561962 6974 shells optional bash-shellshock_1.0_i386.deb
