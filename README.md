@@ -10,6 +10,18 @@ latest patches for CVE-2014-6271 and CVE-2014-7169, which (as of 2014-09-25)
 seem like they've been a bit rushed.
 
 
+Example invocation
+------------------
+
+    $ X='() { ignored; }; /bin/ls /' bash -c true
+    bash-shellshock: Refusing to start due to possibly unsafe environment variable (see syslog)
+
+    $ sudo tail /var/log/auth.log | grep bash-shellshock
+    Sep 26 01:43:08 syra bash-shellshock[4346]: (PPID=4226 UID=1000 GID=1000 \
+        EUID=1000 EGID=1000 CWD=/home/dwon) Refusing to start due to possibly \
+        unsafe environment variable: X=() { ignored; }; /bin/ls /
+
+
 Downloading
 -----------
 
