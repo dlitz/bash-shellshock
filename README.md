@@ -13,9 +13,9 @@ seem like they've been a bit rushed.
 Downloading
 -----------
 
-Source code: https://github.com/dlitz/bash-shellshock
+**Binaries available:** https://github.com/dlitz/bash-shellshock/tree/binaries/binaries
 
-Binaries: https://github.com/dlitz/bash-shellshock/tree/binaries/binaries
+Source code: https://github.com/dlitz/bash-shellshock
 
 
 Installation
