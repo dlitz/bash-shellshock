@@ -53,21 +53,31 @@ static uid_t uid, euid;
 static gid_t gid, egid;
 static char *info;  /* for logging */
 
-static int config_mode;
+#define MODE_UNINITIALIZED 0
+#define MODE_HARD_EXIT 1
+#define MODE_STRIP_VARS 2
+#define MODE_LOG_ONLY 3
 
-#define MODE_HARD_EXIT 0
-#define MODE_STRIP_VARS 1
-#define MODE_LOG_ONLY 2
+static int config_mode = MODE_UNINITIALIZED;
 
 static void setup(void) {
     struct stat st;
 
+    /* Load configuration */
+    if (0 == lstat(CONFIG_FILE_LOG_ONLY, &st)) {
+        config_mode = MODE_LOG_ONLY;
+    } else if (0 == lstat(CONFIG_FILE_STRIP_VARS, &st)) {
+        config_mode = MODE_STRIP_VARS;
+    } else {
+        config_mode = MODE_HARD_EXIT;
+    }
+
+    /* Get a bunch of info for logging */
     ppid = getppid();
     uid = getuid();
     euid = geteuid();
     gid = getgid();
     egid = getegid();
-
     cwd = getcwd(cwdbuf, sizeof(cwdbuf) - 1);
     if (NULL == cwd) {
         cwd = "";
@@ -77,15 +87,7 @@ static void setup(void) {
         info = "<err>";
     }
 
-    if (0 == lstat(CONFIG_FILE_LOG_ONLY, &st)) {
-        config_mode = MODE_LOG_ONLY;
-    } else if (0 == lstat(CONFIG_FILE_STRIP_VARS, &st)) {
-        config_mode = MODE_STRIP_VARS;
-    } else {
-        config_mode = MODE_HARD_EXIT;
-    }
-
-    openlog(PROG_NAME, LOG_NDELAY | LOG_PID | LOG_CONS, LOG_AUTHPRIV);
+    openlog(PROG_NAME, LOG_PID | LOG_CONS, LOG_AUTHPRIV);
 }
 
 int main(int argc, char **argv) {
@@ -93,19 +95,20 @@ int main(int argc, char **argv) {
     char **dest;
     char *eq;
 
-    setup();
-
-    /* Drop variables from the environment whose values start with "(" */
     for(src = dest = environ; *src != NULL; src++) {
         eq = strchr(*src, '=');
         if (eq != NULL && eq[1] == '(') {
+            if (config_mode == MODE_UNINITIALIZED) {
+                setup();
+            }
+
             if (config_mode == MODE_LOG_ONLY) {
                 syslog(LOG_WARNING, "(%s) Possibly unsafe environment variable: %s", info, *src);
             } else if (config_mode == MODE_STRIP_VARS) {
                 syslog(LOG_WARNING, "(%s) Stripping possibly unsafe environment variable: %s", info, *src);
                 *dest = NULL;
             } else {
-                syslog(LOG_WARNING, "(%s) Refusing to start due to possibly unsafe environment variable: %s", info, *src);
+                syslog(LOG_CRIT, "(%s) Refusing to start due to possibly unsafe environment variable: %s", info, *src);
                 fprintf(stderr, "bash-shellshock: Refusing to start due to possibly unsafe environment variable (see syslog)\n");
                 exit(255);
             }
