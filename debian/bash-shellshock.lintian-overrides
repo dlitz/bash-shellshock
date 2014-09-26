@@ -1,0 +1,3 @@
+# We do a manual dance in order to divert /bin/bash without making it disappear
+# during the installation process.
+bash-shellshock: diversion-for-unknown-file bin/bash postinst:32

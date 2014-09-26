@@ -1,0 +1,16 @@
+Source: bash-shellshock
+Section: shells
+Priority: optional
+Maintainer: Dwayne Litzenberger <dlitz@dlitz.net>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.5
+Homepage: https://github.com/dlitz/bash-shellshock
+Vcs-Git: https://github.com/dlitz/bash-shellshock.git
+Vcs-Browser: https://github.com/dlitz/bash-shellshock
+
+Package: bash-shellshock
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Wrapper around bash to strip function definitions.
+ This package diverts /bin/bash to /bin/bash.real and installs a wrapper that
+ strips environment variables with values that start with '('.
