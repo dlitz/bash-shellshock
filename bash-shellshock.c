@@ -98,8 +98,16 @@ int main(int argc, char **argv) {
     for(src = dest = environ; *src != NULL; src++, dest++) {
         *dest = *src;   /* no-op except when MODE_STRIP_VARS is in use */
 
+        /* Detect special environment variables:
+         *  - starting with "()" -- possible shell function
+         *  - starting with "([" -- possible array variable
+         * See bash's variables.c file.
+         *
+         * Previously, we just looked for an initial '(', but that broke things
+         * like virtualenv's "activate" script, which sets PS1="(foo) $PS1".
+         */
         eq = strchr(*src, '=');
-        if (eq != NULL && eq[1] == '(') {
+        if (eq != NULL && eq[1] == '(' && (eq[2] == ')' || eq[2] == '[')) {
             if (config_mode == MODE_UNINITIALIZED) {
                 setup();
             }
