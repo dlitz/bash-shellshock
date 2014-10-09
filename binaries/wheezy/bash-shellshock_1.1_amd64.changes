@@ -1,0 +1,23 @@
+Format: 1.8
+Date: Thu, 09 Oct 2014 15:33:21 -0700
+Source: bash-shellshock
+Binary: bash-shellshock
+Architecture: amd64
+Version: 1.1
+Distribution: wheezy
+Urgency: medium
+Maintainer: Dwayne Litzenberger <dlitz@dlitz.net>
+Changed-By: Dwayne Litzenberger <dlitz@dlitz.net>
+Description: 
+ bash-shellshock - Wrapper around bash to strip function definitions.
+Changes: 
+ bash-shellshock (1.1) unstable; urgency=medium
+ .
+   * Reduce the scope of the check to variables that start with '()' or '(['.
+     This unbreaks virtualenv and other tools that set PS1='(foo) ...'.
+Checksums-Sha1: 
+ b38f6434c25f8922d983eeace1408b7ac7c563ae 8708 bash-shellshock_1.1_amd64.deb
+Checksums-Sha256: 
+ 1e3be1b4fa767b3a59e34321ba8bec3862e9fd7b373beb3678d06965fc39bcd1 8708 bash-shellshock_1.1_amd64.deb
+Files: 
+ 9c8b5d792075169f9b4cf6f7566f1415 8708 shells optional bash-shellshock_1.1_amd64.deb
