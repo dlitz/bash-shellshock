@@ -1,4 +1,4 @@
-NORMAL_FLGS = -DREAL_BASH=\"/bin/bash.real\"
+NORMAL_FLAGS = -DREAL_BASH=\"/bin/bash.real\"
 
 TEST_FLAGS = -DREAL_BASH=\"/usr/bin/env\" -DCONFIG_FILE_LOG_ONLY=\"testout/bash-shellshock.log-only\" -DCONFIG_FILE_STRIP_VARS=\"testout/bash-shellshock.strip-vars\"
 
