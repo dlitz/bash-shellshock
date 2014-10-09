@@ -10,6 +10,46 @@ latest patches for CVE-2014-6271 and CVE-2014-7169, which (as of 2014-09-25)
 seem like they've been a bit rushed.
 
 
+Example session
+---------------
+
+```sh
+$ ls -l /bin/bash*
+lrwxrwxrwx 1 root root      20 Sep 26 01:12 /bin/bash -> /bin/bash-shellshock
+-rwxr-xr-x 1 root root 1029624 Sep 24 11:51 /bin/bash.real
+-rwxr-xr-x 1 root root   10368 Sep 26 00:32 /bin/bash-shellshock
+
+$ XX=1 XXX='()hello' /bin/bash -c env
+bash-shellshock: Refusing to start due to possibly unsafe environment variable (see syslog)
+
+$ XX=1 XXX='([world' /bin/bash -c env
+bash-shellshock: Refusing to start due to possibly unsafe environment variable (see syslog)
+
+$ sudo touch /etc/bash-shellshock.strip-vars
+
+$ XX=1 XXX='()hello' bash -c env | grep ^XX
+XX=1
+
+$ sudo touch /etc/bash-shellshock.log-only
+
+$ XX=1 XXX='()hello' bash -c env | grep ^XX
+XX=1
+XXX=()hello
+
+$ sudo grep 'bash-shellshock\[' /var/log/auth.log
+Sep 26 01:51:31 debian bash-shellshock[5003]: (PPID=4708 UID=1000 GID=1000 EUID=1000 EGID=1000 CWD=/home/dwon) \
+    Refusing to start due to possibly unsafe environment variable: XXX=()hello
+Sep 26 01:51:36 debian bash-shellshock[5009]: (PPID=4708 UID=1000 GID=1000 EUID=1000 EGID=1000 CWD=/home/dwon) \
+    Refusing to start due to possibly unsafe environment variable: XXX=([world
+Sep 26 01:51:41 debian bash-shellshock[5018]: (PPID=4708 UID=1000 GID=1000 EUID=1000 EGID=1000 CWD=/home/dwon) \
+    Stripping possibly unsafe environment variable: XXX=()hello
+Sep 26 01:51:50 debian bash-shellshock[5034]: (PPID=4708 UID=1000 GID=1000 EUID=1000 EGID=1000 CWD=/home/dwon) \
+    Possibly unsafe environment variable: XXX=()hello
+
+$ rm -f /etc/bash-shellshock.log-only /etc/bash-shellshock.strip-vars
+```
+
+
 Downloading
 -----------
 
@@ -22,20 +62,30 @@ Downloading
     https://github.com/dlitz/bash-shellshock
 
 
-Installation
-------------
+Building from source
+--------------------
 
-To build and install this package under Debian or Ubuntu, run:
+* To build and install this package from source under Debian or Ubuntu, clone
+  the repository and run:
 
-    dpkg-buildpackage -us -uc -tc
-    sudo dpkg -i ../bash-shellshock_0.0_amd64.deb
+```sh
+dpkg-buildpackage -us -uc -tc
+sudo dpkg -i ../bash-shellshock_1.0_amd64.deb
+```
 
-For manual installation, run this:
+  See also the [docs/sbuild.md](docs/sbuild.md) file for information about
+  building using sbuild.
 
-    make
-    make install
-    ln /bin/bash /bin/bash.real
-    ln -sf /bin/bash-shellshock /bin/bash
+* To compile manually, run this:
+
+```sh
+make
+make install
+ln /bin/bash /bin/bash.real
+ln -sf /bin/bash-shellshock /bin/bash
+```
+
+  You may need to adjust the paths in the Makefile.
 
 
 Configuration
@@ -58,11 +108,15 @@ Testing
 
 * For CVE-2014-6271
 
-        env X='() { ignored; }; /bin/echo "You are vulnerable to CVE 2014-6271"' bash -c true
+```sh
+env X='() { ignored; }; /bin/echo "You are vulnerable to CVE 2014-6271"' bash -c true
+```
 
 * For CVE-2014-7169 ([reference](https://twitter.com/taviso/status/514887394294652929)):
 
-        env X='() { (a)=>\' bash -c "echo date"; cat echo
+```sh
+env X='() { (a)=>\' bash -c "echo date"; cat echo
+```
 
 
 Logging
